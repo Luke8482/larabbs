@@ -28,3 +28,10 @@ class VerificationCodeRequest extends FormRequest
         ];
     }
 }
+
+$code = '071aYd1w3HhthV2dbS2w35U4Ja1aYd16';
+$driver = Socialite::driver('wechat');
+$accessToken = $driver->getAccessToken($code);
+$oauthUser = $driver->user($accessToken);
+$oauthUser->getNickname();
+$oauthUser->getId();
