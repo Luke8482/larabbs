@@ -100,8 +100,12 @@ Route::prefix('v1')
                     //通知列表
                     Route::get('notifications', 'NotificationsController@index')
                         ->name('notifications.index');
+                    // 未读消息统计
                     Route::get('notifications/stats','NotificationsController@stats')
                         ->name('notifications.stats');
+                    // 标记未读消息为已读
+                    Route::patch('user/read/notifications','NotificationsController@read')
+                        ->name('user.notification.read');
                 });
             });
 
