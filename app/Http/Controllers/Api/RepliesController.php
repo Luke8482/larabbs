@@ -13,12 +13,12 @@ class RepliesController extends Controller
 
     public function store(ReplyRequest $request, Topic $topic, Reply $reply)
     {
-        $reply->content = $request->content;
+        $reply->fill($request->all()) ;
         $reply->topic()->associate($topic);
         $reply->user()->associate($request->user());
 
         $reply->save();
-        
+
 
 
 
