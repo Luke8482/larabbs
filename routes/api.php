@@ -106,6 +106,8 @@ Route::prefix('v1')
                     // 标记未读消息为已读
                     Route::patch('user/read/notifications','NotificationsController@read')
                         ->name('user.notification.read');
+                    Route::get('user/permissions','PermissionsController@index')
+                        ->name('user.permissions.index');
                 });
             });
 
