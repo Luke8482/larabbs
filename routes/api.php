@@ -81,6 +81,11 @@ Route::prefix('v1')
                 Route::get('actived/users','UsersController@activedIndex')
                     ->name('actived.users.index');
 
+                // 自行设计课程CRUD 接口
+                Route::resource('courses','CoursesController')->only([
+                    'index','show'
+                ]);
+
 
 
 
@@ -116,6 +121,12 @@ Route::prefix('v1')
                         ->name('user.notification.read');
                     Route::get('user/permissions','PermissionsController@index')
                         ->name('user.permissions.index');
+
+
+                    // 自行设计课程CRUD 接口
+                    Route::resource('courses','CoursesController')->only([
+                        'store','update','destroy'
+                    ]);
                 });
             });
 
