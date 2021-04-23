@@ -86,6 +86,10 @@ Route::prefix('v1')
                     'index','show'
                 ]);
 
+                Route::resource('chapters','ChaptersController')->only([
+                    'index','show'
+                ]);
+
 
 
 
@@ -133,6 +137,10 @@ Route::prefix('v1')
 
                     // 自行设计课程CRUD 接口
                     Route::resource('courses','CoursesController')->only([
+                        'store','update','destroy'
+                    ]);
+
+                    Route::resource('chapters','ChaptersController')->only([
                         'store','update','destroy'
                     ]);
                 });

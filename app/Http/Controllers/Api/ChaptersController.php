@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Chapter;
 use Illuminate\Http\Request;
+use App\Http\Requests\Api\ChapterRequest;
+use App\Http\Resources\ChapterResource;
 
 class ChaptersController extends Controller
 {
@@ -33,9 +35,12 @@ class ChaptersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ChapterRequest $request, Chapter $chapter)
     {
-        //
+        $chapter->fill($request->all());
+        $chapter->save();
+
+        return new ChapterResource($chapter);
     }
 
     /**

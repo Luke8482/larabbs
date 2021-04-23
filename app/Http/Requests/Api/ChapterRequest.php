@@ -3,8 +3,9 @@
 namespace App\Http\Requests\Api;
 
 
-class CourseRequest extends FormRequest
+class ChapterRequest extends FormRequest
 {
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -16,14 +17,12 @@ class CourseRequest extends FormRequest
             case 'POST':
                 return [
                     'title' => 'required|string',
-                    'price' => 'required',
-                    'cover' => 'required|string',
+                    'course_id' => 'required',
                 ];
                 break;
             case  'PATCH':
                 return [
                     'title' => 'string',
-                    'cover' => 'string',
                 ];
                 break;
         }
@@ -33,9 +32,8 @@ class CourseRequest extends FormRequest
     public function attributes()
     {
         return [
-          'title' => '标题',
-          'price' => '课程价格',
-          'cover' => '课程封面',
+            'title' => '章的标题',
+            'course_id' => '课程id',
         ];
     }
 }
