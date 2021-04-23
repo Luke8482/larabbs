@@ -100,6 +100,14 @@ Route::prefix('v1')
                     // 上传图片
                     Route::post('images','ImagesController@store')
                         ->name('images.store');
+
+                    //上传图片(测试代码）
+                    Route::post('imagesTest','ImagesController@storeTest')
+                        ->name('images.storeTest');
+
+
+
+
                     // 发布话题
                     Route::resource('topics','TopicsController')->only([
                         'store','update','destroy'
