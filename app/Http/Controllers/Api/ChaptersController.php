@@ -86,10 +86,13 @@ class ChaptersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ChapterRequest $request, Chapter $chapter)
     {
-        //
+        $chapter->update($request->all());
+
+        return new ChapterResource($chapter);
     }
+
 
     /**
      * Remove the specified resource from storage.

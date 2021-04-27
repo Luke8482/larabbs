@@ -15,7 +15,7 @@ class ChapterResource extends JsonResource
     public function toArray($request)
     {
         $data = parent::toArray($request);
-        $data['lesson'] = new LessonResource($this->whenLoaded('lesson'));
+//        $data['lesson'] = new LessonResource($this->whenLoaded('lesson'));
 
         return $data;
 
