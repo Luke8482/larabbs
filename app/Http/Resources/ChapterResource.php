@@ -14,12 +14,17 @@ class ChapterResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'id' => $this->id,
-            'title' => $this->title,
-            'course_id' => (int)$this->course_id,
-            'created_at' => (string) $this->created_at,
-            'updated_at' => (string) $this->updated_at,
-        ];
+        $data = parent::toArray($request);
+        $data['lesson'] = new LessonResource($this->whenLoaded('lesson'));
+
+        return $data;
+
+//        return [
+//            'id' => $this->id,
+//            'title' => $this->title,
+//            'course_id' => (int)$this->course_id,
+//            'created_at' => (string) $this->created_at,
+//            'updated_at' => (string) $this->updated_at,
+//        ];
     }
 }

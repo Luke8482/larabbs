@@ -94,6 +94,10 @@ Route::prefix('v1')
                     'index','show'
                 ]);
 
+                //某个课程的章节信息
+                Route::get('courses/{course}/chapters', 'ChaptersController@courseIndex')
+                    ->name('courses.chapters.index');
+
 
 
 

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Chapter;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Http\Requests\Api\ChapterRequest;
 use App\Http\Resources\ChapterResource;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 
 class ChaptersController extends Controller
 {
@@ -17,6 +20,17 @@ class ChaptersController extends Controller
     public function index()
     {
         //
+    }
+
+
+    public function courseIndex(Request $request, Course $course){
+        $query = $course->chapters()->getQuery();
+
+        $chapters = QueryBuilder::for($query)
+            ->allowedIncludes('lessons')
+            ->get();
+
+        return ChapterResource::collection($chapters);
     }
 
     /**
