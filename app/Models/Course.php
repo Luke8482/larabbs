@@ -13,4 +13,14 @@ class Course extends Model
     public function chapters() {
         return $this->hasMany('App\Models\Chapter');
     }
+
+    //连带删除节
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($course){
+            $course->chapters()->delete();
+        });
+    }
 }

@@ -18,4 +18,14 @@ class Chapter extends Model
     public function lessons(){
         return $this->hasMany('App\Models\Lesson');
     }
+
+    //连带删除节
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($chapter){
+           $chapter->lessons()->delete();
+        });
+    }
 }
