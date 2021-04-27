@@ -90,6 +90,10 @@ Route::prefix('v1')
                     'index','show'
                 ]);
 
+                Route::resource('lessons','LessonsController')->only([
+                    'index','show'
+                ]);
+
 
 
 
@@ -141,6 +145,10 @@ Route::prefix('v1')
                     ]);
 
                     Route::resource('chapters','ChaptersController')->only([
+                        'store','update','destroy'
+                    ]);
+
+                    Route::resource('lessons','LessonsController')->only([
                         'store','update','destroy'
                     ]);
                 });

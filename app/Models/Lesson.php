@@ -3,9 +3,9 @@
 namespace App\Models;
 
 
-class Chapter extends Model
+class Lesson extends Model
 {
     protected $fillable = [
-        'title', 'course_id'
+        'title', 'chapter_id'
     ];
 }
