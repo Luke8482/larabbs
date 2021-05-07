@@ -94,6 +94,10 @@ Route::prefix('v1')
                     'index','show'
                 ]);
 
+                Route::resource('sections','SectionsController')->only([
+                    'index','show'
+                ]);
+
                 //某个课程的章节信息
                 Route::get('courses/{course}/chapters', 'ChaptersController@courseIndex')
                     ->name('courses.chapters.index');
@@ -153,6 +157,10 @@ Route::prefix('v1')
                     ]);
 
                     Route::resource('lessons','LessonsController')->only([
+                        'store','update','destroy'
+                    ]);
+
+                    Route::resource('sections','SectionsController')->only([
                         'store','update','destroy'
                     ]);
                 });

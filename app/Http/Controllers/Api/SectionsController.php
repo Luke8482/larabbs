@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\Api\LessonRequest;
-use App\Http\Resources\LessonResource;
-use App\Models\Lesson;
+use App\Http\Requests\Api\SectionRequest;
+use App\Http\Resources\SectionResource;
 use Illuminate\Http\Request;
+use App\Models\Section;
 
-class LessonsController extends Controller
+class SectionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,6 +27,7 @@ class LessonsController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -35,12 +36,12 @@ class LessonsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LessonRequest $request, Lesson $lesson)
+    public function store(SectionRequest $request, Section $section)
     {
-        $lesson->fill($request->all());
-        $lesson->save();
+        $section->fill($request->all());
+        $section->save();
 
-        return new LessonResource($lesson);
+        return new SectionResource($section);
     }
 
     /**
@@ -72,11 +73,9 @@ class LessonsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(LessonRequest $request, Lesson $lesson)
+    public function update(Request $request, $id)
     {
-        $lesson->update($request->all());
-
-        return new LessonResource($lesson);
+        //
     }
 
     /**
@@ -85,9 +84,8 @@ class LessonsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Lesson $lesson)
+    public function destroy($id)
     {
-        $lesson->delete();
-        return response()->json(['status' => 204]);
+        //
     }
 }
