@@ -17,7 +17,7 @@ class SectionResource extends JsonResource
         return [
             'id' => $this->id,
             'type' => $this->type,
-            'content' => (string)$this->content,
+            'content' => $this->content,
             'markdown' => (string) $this->markdown,
             'lesson_id' => (int) $this->lesson_id,
             'updated_at' => (string) $this->updated_at,

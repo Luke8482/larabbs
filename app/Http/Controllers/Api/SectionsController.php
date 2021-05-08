@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\Api\SectionRequest;
 use App\Http\Resources\SectionResource;
+use App\Models\Lesson;
 use Illuminate\Http\Request;
 use App\Models\Section;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class SectionsController extends Controller
 {
@@ -17,6 +19,15 @@ class SectionsController extends Controller
     public function index()
     {
         //
+    }
+
+    public function lessonIndex(Request $request, Lesson $lesson){
+        $query = $lesson->sections()->getQuery();
+
+        $sections = QueryBuilder::for($query)
+            ->get();
+
+        return SectionResource::collection($sections);
     }
 
     /**

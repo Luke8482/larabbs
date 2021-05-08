@@ -13,4 +13,9 @@ class Lesson extends Model
     public function chapter(){
         return $this->belongsTo('App\Models\Chapter');
     }
+
+    //获取节对应的section信息
+    public function sections(){
+        return $this->hasMany('App\Models\Section');
+    }
 }

@@ -163,6 +163,11 @@ Route::prefix('v1')
                     Route::resource('sections','SectionsController')->only([
                         'store','update','destroy'
                     ]);
+
+                    //某个节的section信息（后台端口）
+                    Route::get('lessons/{lesson}/sections', 'SectionsController@lessonIndex')
+                        ->name('lessons.sections.index');
+
                 });
             });
 

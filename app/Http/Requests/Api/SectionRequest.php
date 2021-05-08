@@ -16,7 +16,7 @@ class SectionRequest extends FormRequest
             case 'POST':
                 return [
                     'type' => 'required|string',
-                    'content' => 'required|string',
+                    'content' => 'required',
                     'markdown' => 'string',
                     'lesson_id' => 'required',
                 ];
@@ -24,7 +24,7 @@ class SectionRequest extends FormRequest
             case  'PATCH':
                 return [
                     'type' => 'string',
-                    'content' => 'string',
+//                    'content' => 'text',
                     'markdown' => 'string',
                 ];
                 break;
