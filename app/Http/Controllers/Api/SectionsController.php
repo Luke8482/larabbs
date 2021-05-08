@@ -84,9 +84,11 @@ class SectionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SectionRequest $request, Section $section)
     {
-        //
+        $section->update($request->all());
+
+        return new SectionResource($section);
     }
 
     /**
@@ -95,8 +97,10 @@ class SectionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Section $section)
     {
-        //
+        $section->delete();
+
+        return response()->json(['status'=>204]);
     }
 }
