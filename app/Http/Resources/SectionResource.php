@@ -20,6 +20,7 @@ class SectionResource extends JsonResource
             'content' => $this->content,
             'markdown' => (string) $this->markdown,
             'lesson_id' => (int) $this->lesson_id,
+            'sort' =>  $this->sort,
             'updated_at' => (string) $this->updated_at,
         ];
     }
