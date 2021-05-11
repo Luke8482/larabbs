@@ -27,6 +27,7 @@ class SectionsController extends Controller
         $query = $lesson->sections()->getQuery();
 
         $sections = QueryBuilder::for($query)
+            ->orderBy('sort')
             ->get();
 
         return SectionResource::collection($sections);

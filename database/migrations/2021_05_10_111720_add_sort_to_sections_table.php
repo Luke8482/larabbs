@@ -14,7 +14,7 @@ class AddSortToSectionsTable extends Migration
     public function up()
     {
         Schema::table('sections', function (Blueprint $table) {
-            $table->double('sort')->after('lesson_id');
+            $table->double('sort',16,10)->after('lesson_id');
         });
     }
 
