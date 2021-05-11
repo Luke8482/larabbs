@@ -149,6 +149,49 @@ class SectionsController extends Controller
         return new SectionResource($section);
     }
 
+    //调整section的顺序
+    public function sortUpdate(Request $request){
+        $value = $request->all();
+        $thisSectionId = $value['section_id'];
+        $type = $value['type'];
+        $thisSection = DB::table('sections')->where('id', $thisSectionId)->first();
+        $minSort = DB::table('sections')->where('lesson_id', $thisSection->lesson_id)->min('sort');
+        $maxSort = DB::table('sections')->where('lesson_id', $thisSection->lesson_id)->max('sort');
+
+        if ($type=='上移'){
+            $changeSection = DB::table('sections')
+                ->where([
+                    ['lesson_id', '=', $thisSection->lesson_id],
+                    ['sort', '<', $thisSection->sort]
+                ])
+                ->orWhere([
+                    ['lesson_id', '=', $thisSection->lesson_id],
+                    ['sort', '=', $minSort]
+                ])
+                ->orderBy('sort', 'desc')
+                ->limit(1)
+                ->first();
+
+        }else{
+            $changeSection = DB::table('sections')
+                ->where([
+                    ['lesson_id', '=', $thisSection->lesson_id],
+                    ['sort', '>', $thisSection->sort]
+                ])
+                ->orWhere([
+                    ['lesson_id', '=', $thisSection->lesson_id],
+                    ['sort', '=', $maxSort]
+                ])
+                ->orderBy('sort', 'asc')
+                ->limit(1)
+                ->first();
+        }
+        DB::table('sections')->where('id',$changeSection->id)->update(['sort'=>$thisSection->sort]);
+        DB::table('sections')->where('id',$thisSection->id)->update(['sort'=>$changeSection->sort]);
+
+        return response()->json(['status'=>204]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

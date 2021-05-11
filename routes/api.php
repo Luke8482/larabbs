@@ -168,6 +168,10 @@ Route::prefix('v1')
                     Route::get('lessons/{lesson}/sections', 'SectionsController@lessonIndex')
                         ->name('lessons.sections.index');
 
+                    //调整section顺序的API（后台端口）
+                    Route::post('sections/sort', 'SectionsController@sortUpdate')
+                        ->name('sections.sortUpdate');
+
                 });
             });
 
