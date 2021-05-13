@@ -33,6 +33,25 @@ class SectionsController extends Controller
         return SectionResource::collection($sections);
     }
 
+    public function sectionLearn(Request $request, Lesson $lesson){
+        $sort = $request->all();
+        $query = $lesson->sections()->getQuery();
+        if ($sort == null){
+            $sections = QueryBuilder::for($query)
+                ->orderBy('sort')
+                ->limit('6')
+                ->get();
+        } else {
+            $sections = QueryBuilder::for($query)
+                ->where('sort', '>', $sort['sort'])
+                ->orderBy('sort')
+                ->limit('6')
+                ->get();
+        }
+
+        return SectionResource::collection($sections);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

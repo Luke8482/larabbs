@@ -172,6 +172,10 @@ Route::prefix('v1')
                     Route::post('sections/sort', 'SectionsController@sortUpdate')
                         ->name('sections.sortUpdate');
 
+                    // 学习页获取学习内容的Api
+                    Route::post('sections/{lesson}/learn', 'SectionsController@sectionLearn')
+                        ->name('sections.sectionLearn');
+
                 });
             });
 
