@@ -164,6 +164,9 @@ Route::prefix('v1')
                         'store','update','destroy'
                     ]);
 
+                    //  文件上传& 编辑API
+                    Route::resource('files','FilesController');
+
                     //某个节的section信息（后台端口）
                     Route::get('lessons/{lesson}/sections', 'SectionsController@lessonIndex')
                         ->name('lessons.sections.index');

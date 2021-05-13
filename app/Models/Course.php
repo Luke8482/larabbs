@@ -14,6 +14,11 @@ class Course extends Model
         return $this->hasMany('App\Models\Chapter');
     }
 
+    //获取课程的节
+    public function lessons() {
+        return $this->hasManyThrough('App\Models\Lesson','App\Models\Chapter');
+    }
+
     //连带删除节
     public static function boot()
     {
