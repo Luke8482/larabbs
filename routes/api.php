@@ -179,6 +179,10 @@ Route::prefix('v1')
                     Route::post('sections/{lesson}/learn', 'SectionsController@sectionLearn')
                         ->name('sections.sectionLearn');
 
+                    // 学习页获取课程资料的Api
+                    Route::post('lessons/files', 'FilesController@downloadFile')
+                        ->name('lessons.downloadFile');
+
                 });
             });
 
