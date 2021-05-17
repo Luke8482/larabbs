@@ -43,9 +43,8 @@ class FilesController extends Controller
 
         $lesson_id = $request->lesson_id;
         $lesson = Lesson::where('id',$lesson_id)->first();
-        $course_id = $lesson->chapter->course->course_id;
+        $course_id = $lesson->chapter->course->id;
 
-//        dd($course_id);
 
 
 
