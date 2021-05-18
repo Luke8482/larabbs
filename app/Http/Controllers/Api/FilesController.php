@@ -114,7 +114,31 @@ class FilesController extends Controller
         $download_file = $file->where('lesson_id', $lesson_id)->where('file_type', 'downloadfile')->first();
         $file_path = str_replace(env('APP_URL'), '.', $download_file->path);
         $file_name = $download_file->name;
+        $file_contents = file_get_contents($file_path);
+        $file_contents = base64_encode($file_contents);
 
-        return response()->download($file_path, $file_name);
+
+
+
+
+//        dd($content);
+
+        $headers = [
+            'Content-Type: application/pdf',
+        ];
+
+        return response()->json(['content' => $file_contents]);
     }
+
+//    public function downloadFile(Request $request, File $file){
+//        $lesson_id = $request->lesson_id;
+//        $download_file = $file->where('lesson_id', $lesson_id)->where('file_type', 'downloadfile')->get();
+////        $file_path = str_replace(env('APP_URL'), '.', $download_file->path);
+////        $file_name = $download_file->name;
+////        $headers = [
+////            'Content-Type: application/pdf',
+////        ];
+//
+//        return response($download_file);
+//    }
 }

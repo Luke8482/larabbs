@@ -183,6 +183,11 @@ Route::prefix('v1')
                     Route::post('lessons/files', 'FilesController@downloadFile')
                         ->name('lessons.downloadFile');
 
+
+                    // 创建订单
+                    Route::post('orders', 'OrdersController@store')
+                        ->name('orders.store');
+
                 });
             });
 
