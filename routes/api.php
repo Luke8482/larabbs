@@ -102,6 +102,14 @@ Route::prefix('v1')
                 Route::get('courses/{course}/chapters', 'ChaptersController@courseIndex')
                     ->name('courses.chapters.index');
 
+                // alipay 的后端回调路由
+                Route::post('payment/alipay/notify', 'PaymentController@alipayNotify')
+                    ->name('payment.alipay.notify');
+
+                // alipay 的前端回调
+                Route::get('payment/alipay/return', 'PaymentController@alipayReturn')
+                    ->name('payment.alipay.return');
+
 
 
 
@@ -187,6 +195,12 @@ Route::prefix('v1')
                     // 创建订单
                     Route::post('orders', 'OrdersController@store')
                         ->name('orders.store');
+
+                    // alipay支付订单
+                    Route::get('payment/{order}/alipay', 'PaymentController@payByAlipay')
+                        ->name('payment.alipay');
+
+
 
                 });
             });

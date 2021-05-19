@@ -50,3 +50,14 @@ function model_plural_name($model)
     // 获取子串的复数形式，例如：传参 `user` 会得到 `users`
     return Str::plural($snake_case_name);
 }
+
+function ngrok_url($routeName, $parameters = [])
+{
+    // 开发环境，并且配置了 NGROK_URL
+    if(app()->environment('local') && $url = config('app.ngrok_url')) {
+        // route() 函数第三个参数代表是否绝对路径
+        return $url.route($routeName, $parameters, false);
+    }
+
+    return route($routeName, $parameters);
+}
