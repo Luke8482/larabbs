@@ -110,6 +110,10 @@ Route::prefix('v1')
                 Route::get('payment/alipay/return', 'PaymentController@alipayReturn')
                     ->name('payment.alipay.return');
 
+                // wechat 的后端回调路由
+                Route::post('payment/wechat/notify', 'PaymentController@wechatNotify')
+                    ->name('payment.wechat.notify');
+
 
 
 
@@ -199,6 +203,10 @@ Route::prefix('v1')
                     // alipay支付订单
                     Route::get('payment/{order}/alipay', 'PaymentController@payByAlipay')
                         ->name('payment.alipay');
+
+                    // wechat支付订单
+                    Route::get('payment/{order}/wechat', 'PaymentController@payByWechat')
+                        ->name('payment.wechat');
 
 
 
